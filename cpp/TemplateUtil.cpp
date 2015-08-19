@@ -2,6 +2,7 @@
 模板相关小工具
 */
 
+#include <cstdio>
 #include <cstddef>
 
 //return size of an array as a compile-time constant
@@ -13,7 +14,6 @@ constexpr std::size_t arraySize(T (&)[N])
 
 //////////////////////////////////////////////////////////////////////////
 
-#include <cstdio>
 #include <cassert>
 
 int main(int argc, char const *argv[])

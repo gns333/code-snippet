@@ -2,9 +2,10 @@
 追踪对象是否为堆上对象
 非线程安全
 */
-#include <stdio.h>
-#include <assert.h>
+
+#include <cstdio>
 #include <list>
+#include <algorithm>
 
 class HeapTrackable
 {
@@ -34,13 +35,16 @@ public:
 		auto ptrIt = std::find(heapAddressList_.begin(), heapAddressList_.end(), rawAddress);
 		return ptrIt != heapAddressList_.end();
 	}
-	virtual ~HeapTrackable() = 0 {};
+	virtual ~HeapTrackable() = 0;
 private:
 	static std::list<const void*> heapAddressList_;
 };
 std::list<const void*> HeapTrackable::heapAddressList_;
+HeapTrackable::~HeapTrackable() {};
 
 //////////////////////////////////////////////////////////////////////////
+
+#include <cassert>
 
 class Test : public HeapTrackable 
 {
